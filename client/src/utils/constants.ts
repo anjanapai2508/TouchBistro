@@ -1,0 +1,2 @@
+export const RESULT_LINE_1 = "The median of all prime numbers less than ";
+export const RESULT_LINE_2 = "This was calculated using the <a href='https://google.com'><u>Sieve of Eratosthenes</u></a> Algorithm!";
