@@ -6,7 +6,7 @@ import { RESULT_LINE_1, RESULT_LINE_2, SERVER_ERROR, VALIDATION_ERROR } from "./
 const InputForm: React.FC = () => {
   const [upperLimit, setUpperLimit] = React.useState("");
   const [validationError, setValidationError] = useState("");
-  const [result, setResult] = useState<string | null>(null);
+  const [result, setResult] = useState("");
   const [serverError, setServerError] = useState("");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -26,7 +26,7 @@ const InputForm: React.FC = () => {
       setResult(
         `${RESULT_LINE_1} ${upperLimit} is <b>${response.data}</b>!</br> ${RESULT_LINE_2}`
       );
-    } catch (error) {
+    } catch (error:any) {
       setServerError(`${SERVER_ERROR}`)
     }
   };
