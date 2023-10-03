@@ -1,7 +1,7 @@
 import React from "react";
 import { FormEvent, useState } from "react";
 import { getPrimeNumber } from "./utils/data-utils";
-import { RESULT_LINE_1, RESULT_LINE_2 } from "./utils/constants";
+import { RESULT_LINE_1, RESULT_LINE_2, SERVER_ERROR, VALIDATION_ERROR } from "./utils/constants";
 
 const InputForm: React.FC = () => {
   const [upperLimit, setUpperLimit] = React.useState("");
@@ -15,7 +15,7 @@ const InputForm: React.FC = () => {
     setResult("");
     // Make sure that the upper limit is greater than 2
     if (!upperLimit || parseInt(upperLimit, 10) < 3) {
-      setValidationError("Upper Limit must be greater than or equal to 2.");
+      setValidationError(`${VALIDATION_ERROR}`);
       return; // Exit the function without making the API request
     }
     try {
@@ -27,22 +27,18 @@ const InputForm: React.FC = () => {
         `${RESULT_LINE_1} ${upperLimit} is <b>${response.data}</b>!</br> ${RESULT_LINE_2}`
       );
     } catch (error) {
-      setServerError('Sorry, we encountered an issue. Please try again later.')
+      setServerError(`${SERVER_ERROR}`)
     }
   };
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen font-mono">
-      <div
-        id="error-alert"
-        className="hidden bg-red-200 border-red-500 text-red-700 border rounded-lg p-4 absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2"
-      >
-        <p>The Upper Limit field is required.</p>
-      </div>
       <h1 className="text-3xl font-bold mb-6">Median Finder</h1>
           {/* display server error */}
           {serverError && (
             <div
+            id="serverError"
+            data-testid="serverError"
               className="text-red-500 text-lg"
               >{serverError}</div>
           )}
@@ -78,12 +74,13 @@ const InputForm: React.FC = () => {
         </div>
         {/* Error message */}
         {validationError && (
-          <div className="text-red-500 text-sm mb-4">{validationError}</div>
+          <div id="validationError" data-testid="validationError" className="text-red-500 text-sm mb-4">{validationError}</div>
         )}
         <div className="md:flex md:items-center">
           <div className="md:w-1/3"></div>
           <div className="md:w-2/3">
             <button
+            data-testid="button"
               className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
               type="submit"
             >
@@ -94,6 +91,8 @@ const InputForm: React.FC = () => {
         {/* Result display */}
         {result && (
           <div
+          id="result"
+           data-testid="result"
             className="text-green-500 text-lg"
             dangerouslySetInnerHTML={{ __html: result }} // Render HTML content
           ></div>
