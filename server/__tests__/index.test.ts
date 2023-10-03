@@ -11,16 +11,4 @@ describe('Get Homepage', () => {
   });
 });
 
-//Test case for prime numbers route.
-
-
-//Test case for median route.
-
-
-
-
-
-
-
-
 
