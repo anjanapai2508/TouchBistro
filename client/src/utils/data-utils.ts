@@ -5,7 +5,6 @@ export async function getPrimeNumber(url: String, upperLimit: number) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);
       }
       const data = await response.json();
-      console.log(data);
          return data;
     } catch (error) {
       console.error(`Error: ${error}`);
