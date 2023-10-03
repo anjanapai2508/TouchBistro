@@ -1,12 +1,15 @@
+import axios from "axios";
 export async function getPrimeNumber(url: String, upperLimit: number) {
-    try {
-      const response = await fetch(`http://localhost:8000/find-prime-numbers/${upperLimit}`);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch data: ${response.statusText}`);
-      }
-      const data = await response.json();
-         return data;
-    } catch (error) {
-      console.error(`Error: ${error}`);
+  try {
+    const response = await axios.get(
+      `http://localhost:8000/find-prime-numbers/${upperLimit}`
+    );
+    if (!response) {
+      throw new Error(`Failed to fetch data: ${response}`);
     }
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    console.error(`Error: ${error}`);
   }
+}
