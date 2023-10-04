@@ -12,7 +12,11 @@ const InputForm: React.FC = () => {
   const [validationError, setValidationError] = useState("");
   const [result, setResult] = useState("");
   const [serverError, setServerError] = useState("");
-
+  // Define the API URL based on the environment
+  const apiBaseUrl =
+    process.env.REACT_APP_ENV === "development"
+      ? process.env.REACT_APP_DEV_API_URL
+      : process.env.REACT_APP_PROD_API_URL;
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setServerError("");
@@ -24,7 +28,7 @@ const InputForm: React.FC = () => {
     }
     try {
       const response = await getPrimeNumber(
-        "http://localhost:8000/find-prime-numbers",
+        `${apiBaseUrl}`,
         parseInt(upperLimit, 10)
       );
       setResult(
@@ -104,7 +108,7 @@ const InputForm: React.FC = () => {
           <div
             id="result"
             data-testid="result"
-            className="text-green-500 text-lg"
+            className="text-black-500 text-lg border-2 border-indigo-200 rounded mx-8 my-8 py-4 shadow-md shadow-lg shadow-indigo-500/50 bg-gray-200"
             dangerouslySetInnerHTML={{ __html: result }} // Render HTML content
           ></div>
         )}
