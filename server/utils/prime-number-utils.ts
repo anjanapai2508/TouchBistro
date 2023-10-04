@@ -1,6 +1,5 @@
 export function getPrimeNumbers(inputNumber: number): number[] {
     // Your code to generate an array of prime numbers
-    // ...
     const isPrime: boolean[] = new Array(inputNumber).fill(true); // Initially all numbers are assumed to be prime.
     isPrime[0] = isPrime[1] = false;
     for (let num = 2; num * num <= inputNumber; num++) { // iterate over the array created earlier and mark
