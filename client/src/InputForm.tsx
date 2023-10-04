@@ -1,15 +1,14 @@
 import React, { FormEvent, useState } from "react";
 import {
+  MIN_VALUE,
+  MAX_VALUE,
   RESULT_LINE_1,
   RESULT_LINE_2,
-  SERVER_ERROR,
-  VALIDATION_ERROR,
+  SERVER_ERROR
 } from "./utils/constants";
 import { getPrimeNumber } from "./utils/data-utils";
-
 const InputForm: React.FC = () => {
   const [upperLimit, setUpperLimit] = React.useState("");
-  const [validationError, setValidationError] = useState("");
   const [result, setResult] = useState("");
   const [serverError, setServerError] = useState("");
   // Define the API URL based on the environment
@@ -21,11 +20,6 @@ const InputForm: React.FC = () => {
     event.preventDefault();
     setServerError("");
     setResult("");
-    // Make sure that the upper limit is greater than 2
-    if (!upperLimit || parseInt(upperLimit, 10) < 3) {
-      setValidationError(`${VALIDATION_ERROR}`);
-      return; // Exit the function without making the API request
-    }
     try {
       const response = await getPrimeNumber(
         `${apiBaseUrl}`,
@@ -72,25 +66,16 @@ const InputForm: React.FC = () => {
               id="inline-upper-limit"
               type="number"
               value={upperLimit}
+              min={MIN_VALUE}
+              max={MAX_VALUE}
               onChange={(e) => {
                 setUpperLimit(e.target.value);
-                setValidationError(""); // Clear any previous error
               }}
               placeholder="100"
               required
             />
           </div>
         </div>
-        {/* Validation Error message */}
-        {validationError && (
-          <div
-            id="validationError"
-            data-testid="validationError"
-            className="text-red-500 text-sm mb-4"
-          >
-            {validationError}
-          </div>
-        )}
         <div className="md:flex md:items-center">
           <div className="md:w-1/3"></div>
           <div className="md:w-2/3">
