@@ -2,7 +2,7 @@ import axios from "axios";
 export async function getPrimeNumber(url: String, upperLimit: number) {
   try {
     const response = await axios.get(
-      `http://localhost:8000/find-prime-numbers/${upperLimit}`
+      `${url}/${upperLimit}`
     );
     if (!response) {
       throw new Error(`Failed to fetch data: ${response}`);

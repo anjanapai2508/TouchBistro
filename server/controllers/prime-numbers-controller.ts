@@ -5,7 +5,7 @@ module.exports = (req:Request, res:Response) => {
 
     // Logic to find the median of the prime numbers sent as input 
     // input : upper limit n 
-    // output : array of prime numbers < n using Sieve of Eratosthenes algorithm
+    // output : median of array of prime numbers < n using Sieve of Eratosthenes algorithm
     try {
       const inputNumber = parseInt(req.params.upperLimit, 10);// Extract the 'number' parameter from the request
       const primes = getPrimeNumbers(inputNumber); // Get the array of prime numbers using Sieve of Eratosthenes algorithm
