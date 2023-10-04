@@ -1,7 +1,6 @@
-import React from "react";
-import { render, fireEvent, RenderResult, act } from "@testing-library/react";
-import App from "../../App";
 import "@testing-library/jest-dom/extend-expect";
+import { act, fireEvent, render } from "@testing-library/react";
+import App from "../../App";
 
 test("renders the App component", () => {
   const { getByText, getByPlaceholderText, queryByTestId } = render(<App />);
@@ -33,7 +32,6 @@ test("renders the App component", () => {
   // Test if server error is hidden initially when the page loads
   const serverErrorText = queryByTestId("serverError");
   expect(serverErrorText).toBeNull();
-
 });
 
 test("check if validation message is shown if upper-limit is <3", () => {
@@ -60,10 +58,10 @@ test("check if validation message is NOT shown if upper-limit is >2", () => {
   const inputBox = getByPlaceholderText("100");
   const button = getByText("Find Median");
 
-  // Enter an valid input 
+  // Enter an valid input
   act(() => {
-  fireEvent.change(inputBox, { target: { value: "4" } });
-  fireEvent.click(button);
+    fireEvent.change(inputBox, { target: { value: "4" } });
+    fireEvent.click(button);
   });
 
   // Assert that the validation error message is displayed
