@@ -1,7 +1,11 @@
-import React from "react";
-import { FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
+import {
+  RESULT_LINE_1,
+  RESULT_LINE_2,
+  SERVER_ERROR,
+  VALIDATION_ERROR,
+} from "./utils/constants";
 import { getPrimeNumber } from "./utils/data-utils";
-import { RESULT_LINE_1, RESULT_LINE_2, SERVER_ERROR, VALIDATION_ERROR } from "./utils/constants";
 
 const InputForm: React.FC = () => {
   const [upperLimit, setUpperLimit] = React.useState("");
@@ -26,22 +30,24 @@ const InputForm: React.FC = () => {
       setResult(
         `${RESULT_LINE_1} ${upperLimit} is <b>${response.data}</b>!</br> ${RESULT_LINE_2}`
       );
-    } catch (error:any) {
-      setServerError(`${SERVER_ERROR}`)
+    } catch (error: any) {
+      setServerError(`${SERVER_ERROR}`);
     }
   };
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen font-mono">
       <h1 className="text-3xl font-bold mb-6">Median Finder</h1>
-          {/* display server error */}
-          {serverError && (
-            <div
-            id="serverError"
-            data-testid="serverError"
-              className="text-red-500 text-lg"
-              >{serverError}</div>
-          )}
+      {/* display server error */}
+      {serverError && (
+        <div
+          id="serverError"
+          data-testid="serverError"
+          className="text-red-500 text-lg"
+        >
+          {serverError}
+        </div>
+      )}
       <form
         className="w-full max-w-sm"
         onSubmit={handleSubmit}
@@ -49,7 +55,6 @@ const InputForm: React.FC = () => {
       >
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
-         
             <label
               className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
               htmlFor="inline-upper-limit"
@@ -72,15 +77,21 @@ const InputForm: React.FC = () => {
             />
           </div>
         </div>
-        {/* Error message */}
+        {/* Validation Error message */}
         {validationError && (
-          <div id="validationError" data-testid="validationError" className="text-red-500 text-sm mb-4">{validationError}</div>
+          <div
+            id="validationError"
+            data-testid="validationError"
+            className="text-red-500 text-sm mb-4"
+          >
+            {validationError}
+          </div>
         )}
         <div className="md:flex md:items-center">
           <div className="md:w-1/3"></div>
           <div className="md:w-2/3">
             <button
-            data-testid="button"
+              data-testid="button"
               className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
               type="submit"
             >
@@ -91,8 +102,8 @@ const InputForm: React.FC = () => {
         {/* Result display */}
         {result && (
           <div
-          id="result"
-           data-testid="result"
+            id="result"
+            data-testid="result"
             className="text-green-500 text-lg"
             dangerouslySetInnerHTML={{ __html: result }} // Render HTML content
           ></div>
