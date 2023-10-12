@@ -49,3 +49,14 @@ To run the test cases
  # Notes
  1. Server side algorithm follows Sieve of Eratosthenes algorithm to find the array of prime numbers.
  2. Program will take-in numeric value in the range of 3-10 million. A client-side validation has been setup to make sure the input values conforms to this range.
+
+# Tech Stack: 
+  Client-Side :
+        Reactjs --> Javascript library for making web-apps
+        Tailwind css --> Css library for adding styles to your front-end without having to write the actual css.
+        Jest --> Writing test cases.
+        Axios -->  HTTP client for the browser and node.js (used to make http requests to the server and process response for the browser) 
+ Server-Side :
+        ExpressJs --> Web framework for Node.js 
+        Jest --> Writing test cases.
+        
