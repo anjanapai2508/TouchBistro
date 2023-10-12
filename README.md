@@ -51,12 +51,22 @@ To run the test cases
  2. Program will take-in numeric value in the range of 3-10 million. A client-side validation has been setup to make sure the input values conforms to this range.
 
 # Tech Stack: 
-  Client-Side :
-        Reactjs --> Javascript library for making web-apps
-        Tailwind css --> Css library for adding styles to your front-end without having to write the actual css.
-        Jest --> Writing test cases.
-        Axios -->  HTTP client for the browser and node.js (used to make http requests to the server and process response for the browser) 
- Server-Side :
-        ExpressJs --> Web framework for Node.js 
-        Jest --> Writing test cases.
+  1. Client-Side :
+        1. Reactjs --> Javascript library for making web-apps.
+        2. Tailwind css --> Css library for adding styles to your front-end without having to write the actual css.
+        3. Jest --> Writing test cases.
+        4. Axios -->  HTTP client for the browser and node.js (used to make http requests to the server and process response for the browser).
+
+
+  2. Server-Side :
+        1. ExpressJs --> Web framework for Node.js. 
+        2. Jest --> Writing test cases.
+    
+# Future Improvements:
+   1. Error Handling :
+       1. Adding more test cases.
+For example include test cases to test html alerts - those generated when UPPER LIMIT is less than {MIN_VALUE} or greater than {MAX_VALUE} and alert generated if empty UPPER LIMIT is sent etc.
+On the server side tests need to be included to test the performance and reliability of the system - such as test to determine the response time for a very large upper limit and determine if the response time is acceptable.
+       3. Implementing better error handling - currently the front-end code only logs and shows a server error if response returned is 500 but the code needs to handle all kinds of responses incase the server is down or having any issues and show appropriate messages to the user. This needs to be implemented.
+   3. Scale (Handle requests where input number is > 10million) : Currently the server side code breaks if a number greater than 10 million is sent as the upper-limit, to resolve this implement optimization techniques such as parallel processing or divide the prime-number array into multiple parts or implement code to divide the array into even and odd numbers to reduce the size etc.
         
